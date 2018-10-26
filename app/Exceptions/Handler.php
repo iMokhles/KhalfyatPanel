@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -65,6 +66,7 @@ class Handler extends ExceptionHandler
 
         // MultiAuthUnAuthenticated
 
+        Log::info(print_r($exception->guards(), true));
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'info' => Response::$statusTexts[Response::HTTP_UNAUTHORIZED],

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ApiAccessMiddleware;
 use App\Http\Middleware\ClearViewsCacheMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            ApiAccessMiddleware::class,
         ],
     ];
 

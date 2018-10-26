@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Social\WallpaperComment;
+use App\Models\Social\WallpaperLike;
+use App\Models\Social\WallpaperReport;
 use App\Notifications\User\UserResetPasswordNotification;
 use App\Notifications\User\UserVerifyEmailNotification;
 use Illuminate\Notifications\Notifiable;
@@ -11,8 +14,9 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 use Backpack\CRUD\CrudTrait;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use CrudTrait;
     use Notifiable;
@@ -90,5 +94,55 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification() {
         $this->notify(new UserVerifyEmailNotification());
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    /**
+     * Return user's likes
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+     */
+    public function likes()
+    {
+        return $this->hasMany(WallpaperLike::class, 'user_id');
+    }
+
+    /**
+     * Return user's comments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(WallpaperComment::class, 'user_id');
+    }
+
+    /**
+     * Return user's reports
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+     */
+    public function reports()
+    {
+        return $this->hasMany(WallpaperReport::class, 'user_id');
     }
 }

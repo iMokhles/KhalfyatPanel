@@ -12,11 +12,11 @@ return [
     */
 
     // Project name. Shown in the breadcrumbs and a few other places.
-    'project_name' => 'IMPanel',
+    'project_name' => 'Khalfyat',
 
     // Menu logos
-    'logo_lg'   => '<b>IM</b>Panel',
-    'logo_mini' => '<b>IM</b>P',
+    'logo_lg'   => '<b>Khal</b>fyat',
+    'logo_mini' => '<b>Kh</b>F',
 
     // Developer or company name. Shown in footer.
     'developer_name' => 'Mokhlas Hussein',

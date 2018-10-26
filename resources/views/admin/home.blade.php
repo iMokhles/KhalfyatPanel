@@ -16,13 +16,25 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="box-title">{{ trans('backpack::base.login_status') }}</div>
-                </div>
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                @foreach(\App\Helpers\DashboardHelper::boxWidgets() as $boxWidget)
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-{{$boxWidget['color']}}">
+                            <div class="inner">
+                                <h3>{{$boxWidget['count']}}</h3>
 
-                <div class="box-body">{{ trans('backpack::base.logged_in') }}</div>
+                                <p>{{$boxWidget['title']}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-{{$boxWidget['icon']}}"></i>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+            <!-- /.row -->
         </div>
     </div>
 @endsection

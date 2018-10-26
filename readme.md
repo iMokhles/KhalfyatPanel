@@ -1,13 +1,13 @@
-# IMPanel with Backpack
+# KhalfyatPanel
 
-IMPanel is a ready to use application with all [Backpack for Laravel](https://github.com/Laravel-Backpack) packages.
+KhalfyatPanel is laravel backend for a Wallpapers Mobile App
 
 ## Install
 
 1) Run in your terminal:
 
 ``` bash
-$ git clone https://github.com/iMokhles/IMPanelAdvanced.git IMPanel
+$ git clone https://github.com/iMokhles/KhalfyatPanel.git KhalfyatPanel
 ```
 
 2) Set your database information in your .env file (use the .env.example as an example);
@@ -18,12 +18,14 @@ $ composer install
 $ cp .env.example .env
 $ ( add your database information in .env )
 $ php artisan key:generate
+$ php artisan jwt:secret
+$ ( update config/api_helpers.php )
 $ php artisan migrate:refresh --seed --force
 ```
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [FILE].
+Thank you for considering contributing to the KhalfyatPanel!
 
 ## Security Vulnerabilities
 

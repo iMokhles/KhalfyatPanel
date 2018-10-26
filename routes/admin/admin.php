@@ -42,3 +42,27 @@ Route::post('change-password', 'Auth\AdminAccountController@changePasswordForm')
 Route::get('/email/verify', 'Auth\VerificationController@show')->name('admin.verification.notice');
 Route::get('/email/verify/{id}', 'Auth\VerificationController@verify')->name('admin.verification.verify');
 Route::get('/email/resend', 'Auth\VerificationController@resend')->name('admin.verification.resend');
+
+
+// Users
+CRUD::resource('admins_list', 'AdminsCrudController');
+CRUD::resource('users_list', 'UsersCrudController');
+
+// Spatie Cruds
+CRUD::resource('permissions', 'Spatie\\PermissionsCrudController');
+CRUD::resource('roles', 'Spatie\\RolesCrudController');
+
+// Social Cruds
+CRUD::resource('wallpapers', 'Social\\WallpapersCrudController');
+CRUD::resource('categories', 'Social\\CategoriesCrudController');
+CRUD::resource('wallpaper_categories', 'Social\\WallpaperCategoriesCrudController');
+CRUD::resource('daily_wallpapers', 'Social\\DailyWallpapersCrudController');
+CRUD::resource('wallpaper_comments', 'Social\\WallpaperCommentsCrudController');
+CRUD::resource('wallpaper_likes', 'Social\\WallpaperLikesCrudController');
+CRUD::resource('wallpaper_reports', 'Social\\WallpaperReportsCrudController');
+CRUD::resource('wallpaper_downloads', 'Social\\WallpaperDownloadsCrudController');
+CRUD::resource('wallpaper_views', 'Social\\WallpaperViewsCrudController');
+
+// Api
+CRUD::resource('api_clients', 'Api\\ApiClientsCrudController');
+CRUD::resource('api_access', 'Api\\ApiAccessCrudController');
