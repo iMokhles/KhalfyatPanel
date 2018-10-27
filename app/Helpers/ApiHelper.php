@@ -9,7 +9,9 @@
 namespace App\Helpers;
 
 
+use App\Models\Api\ApiClient;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class ApiHelper
 {
@@ -22,8 +24,15 @@ class ApiHelper
         ])->setStatusCode($error_code, Response::$statusTexts[$error_code]);
     }
 
-    public static function generateApiClient($version) {
+    public static function generateApiClient($name, $version) {
 
-        $created = '';
+        $created = new ApiClient();
+        $created->name = $name;
+        $created->secret = Str::random(100);
+        $created->version = $version;
+        $created->revoked = false;
+        $saved = $created->save();
+
+        return $saved;
     }
 }
